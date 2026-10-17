@@ -1818,11 +1818,11 @@
             <div>
               <div style="display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#0B8077;font-weight:700"><span style="width:24px;height:1px;background:#0E9E92"></span>Sound Library</div>
               <h1 style="font-family:'Fraunces',serif;font-size:40px;font-weight:600;letter-spacing:-.02em;margin:10px 0 6px;line-height:1.05;color:#0E1F22">Your <em style="font-style:italic;color:#0E9E92;font-weight:500">sound library</em>.</h1>
-              <div style="color:#5C6E6B;font-size:14px;max-width:760px">A <strong style="color:#0E1F22">raw track</strong> is a clinical reference — a clinical name and a long clinical description, no audio. Every <strong style="color:#0E1F22">mixed track</strong> you upload is linked to one raw track and carries its own audio and player description.</div>
+              <div style="color:#5C6E6B;font-size:14px;max-width:760px">A <strong style="color:#0E1F22">preset</strong> is a clinical name and its long clinical description from Google Drive — it has no audio. Every <strong style="color:#0E1F22">mixed track</strong> you upload must be linked to exactly one preset and carries its own audio and player description.</div>
             </div>
             <div style="display:flex;gap:10px;flex-wrap:wrap">
               <button onClick="{{ openImport }}" style="background:#FFFFFF;border:1px solid rgba(10,30,30,.14);border-radius:10px;padding:10px 16px;font-size:13px;color:#0E1F22;cursor:pointer;font-weight:500" style-hover="border-color:rgba(14,158,146,.4);background:#F0FAF8">⇪ Import from Drive</button>
-              <button onClick="{{ openAddTrack }}" style="background:#FFFFFF;border:1px solid rgba(10,30,30,.14);border-radius:10px;padding:10px 16px;font-size:13px;color:#0E1F22;cursor:pointer;font-weight:500;border-color:rgba(14,158,146,.4);color:#0B5A52;font-weight:600" style-hover="background:#F0FAF8">＋ Add raw track</button>
+              <button onClick="{{ openAddTrack }}" style="background:#FFFFFF;border:1px solid rgba(10,30,30,.14);border-radius:10px;padding:10px 16px;font-size:13px;color:#0E1F22;cursor:pointer;font-weight:500;border-color:rgba(14,158,146,.4);color:#0B5A52;font-weight:600" style-hover="background:#F0FAF8">＋ Add preset</button>
               <button onClick="{{ addMixAny }}" style="background:#0E9E92;border:1px solid #0E9E92;border-radius:10px;padding:10px 18px;font-size:13px;color:#FFFFFF;cursor:pointer;font-weight:600;box-shadow:0 1px 2px rgba(14,158,146,.4)" style-hover="background:#0B8077;border-color:#0B8077">⇪ Upload mixed track</button>
             </div>
           </div>
@@ -1830,59 +1830,41 @@
           <!-- How it works -->
           <div style="display:grid;grid-template-columns:1.15fr auto 1.15fr auto 1fr;gap:10px;align-items:stretch;margin-bottom:22px">
             <div style="background:#FFFFFF;border:1px solid rgba(10,30,30,.08);border-radius:14px;padding:16px 18px">
-              <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#0B8077;font-weight:700">1 · Raw track <span style="color:#8A9B97;letter-spacing:.06em">· no audio</span></div><div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;color:#0E1F22">{{ stat.raw }}</div></div>
+               <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#0B8077;font-weight:700">1 · Preset <span style="color:#8A9B97;letter-spacing:.06em">· no audio</span></div><div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;color:#0E1F22">{{ stat.raw }}</div></div>
               <div style="font-size:12px;color:#5C6E6B;margin-top:6px;line-height:1.45"><strong style="color:#0E1F22">Clinical name + long clinical description.</strong> The reference the AI reads to decide who a track suits.</div>
             </div>
             <div style="display:grid;place-items:center;color:#8A9B97;font-size:12px;text-align:center;line-height:1.2">1 → many<br><span style="font-size:18px">→</span></div>
             <div style="background:#FFFFFF;border:1px solid rgba(10,30,30,.08);border-radius:14px;padding:16px 18px">
               <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#0B8077;font-weight:700">2 · Mixed tracks</div><div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:600;color:#0E1F22">{{ stat.versions }}</div></div>
-              <div style="font-size:12px;color:#5C6E6B;margin-top:6px;line-height:1.45"><strong style="color:#0E1F22">Audio file + player description</strong>, linked to one raw track. Mix 1, Mix 2, Mix 3… each with a unique title &amp; URL.</div>
+               <div style="font-size:12px;color:#5C6E6B;margin-top:6px;line-height:1.45"><strong style="color:#0E1F22">Audio file + player description</strong>, linked to exactly one preset. Mix 1, Mix 2, Mix 3… each with a unique title &amp; URL.</div>
             </div>
             <div style="display:grid;place-items:center;color:#8A9B97;font-size:18px">→</div>
             <div style="background:linear-gradient(135deg,#F0FAF8,#FFFFFF);border:1px solid rgba(14,158,146,.22);border-radius:14px;padding:16px 18px">
               <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#0B5A52;font-weight:700">3 · Assign</div>
-              <div style="font-size:12px;color:#0B5A52;margin-top:6px;line-height:1.45">Pick mixed tracks inside campaigns and, later, protocols — chosen by their raw track's clinical purpose.</div>
+               <div style="font-size:12px;color:#0B5A52;margin-top:6px;line-height:1.45">Pick mixed tracks inside campaigns and, later, protocols — chosen by their preset's clinical purpose.</div>
             </div>
-          </div>
-
-          <!-- Category chips -->
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
-            <div onClick="{{ pickAllCats }}" style="{{ allChipStyle }}">All <span style="{{ allCountStyle }}">{{ stat.raw }}</span></div>
-            <sc-for list="{{ catsChips }}" as="c">
-              <div onClick="{{ c.pick }}" style="{{ c.style }}"><img src="{{ c.icon }}" alt="" style="width:15px;height:15px;display:block;flex-shrink:0">{{ c.name }} <span style="{{ c.countStyle }}">{{ c.count }}</span></div>
-            </sc-for>
           </div>
 
           <!-- Toolbar -->
           <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center">
             <div style="position:relative;flex:1;min-width:240px;max-width:380px">
               <svg viewBox="0 0 24 24" fill="none" stroke="#8A9B97" stroke-width="2" style="width:14px;height:14px;position:absolute;left:12px;top:50%;transform:translateY(-50%)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input type="text" defaultValue="{{ libSearchVal }}" onChange="{{ setLibSearch }}" placeholder="Search clinical name, description, mix title…" style="width:100%;background:#FFFFFF;border:1px solid rgba(10,30,30,.12);color:#0E1F22;padding:10px 12px 10px 34px;border-radius:10px;font-size:13px;outline:none" style-focus="border-color:#0E9E92;box-shadow:0 0 0 3px rgba(14,158,146,.12)">
+              <input type="text" defaultValue="{{ libSearchVal }}" onChange="{{ setLibSearch }}" placeholder="Search preset, clinical description, mix title…" style="width:100%;background:#FFFFFF;border:1px solid rgba(10,30,30,.12);color:#0E1F22;padding:10px 12px 10px 34px;border-radius:10px;font-size:13px;outline:none" style-focus="border-color:#0E9E92;box-shadow:0 0 0 3px rgba(14,158,146,.12)">
             </div>
-            <sc-raw-select onChange="{{ setLibPres }}" style="background:#FFFFFF;border:1px solid rgba(10,30,30,.12);padding:10px 14px;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;outline:none;max-width:260px">
-              <option>Any presentation</option>
-              <sc-for list="{{ presentations }}" as="p"><option>{{ p.name }}</option></sc-for>
-            </sc-raw-select>
-            <sc-raw-select onChange="{{ setLibMus }}" style="background:#FFFFFF;border:1px solid rgba(10,30,30,.12);padding:10px 14px;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;outline:none">
-              <option>Any background music</option>
-              <sc-for list="{{ music }}" as="m"><option>{{ m.name }}</option></sc-for>
-            </sc-raw-select>
             <div style="margin-left:auto;display:flex;gap:4px;background:#FFFFFF;border:1px solid rgba(10,30,30,.1);padding:3px;border-radius:9px">
-              <div onClick="{{ setViewTracks }}" style="{{ viewTracksStyle }}">Raw tracks</div>
+              <div onClick="{{ setViewTracks }}" style="{{ viewTracksStyle }}">Presets</div>
               <div onClick="{{ setViewVersions }}" style="{{ viewVersionsStyle }}">All mixed tracks</div>
             </div>
           </div>
 
-          <!-- RAW TRACKS TABLE -->
+          <!-- PRESETS TABLE -->
           <sc-if value="{{ libTracksView }}">
             <div style="background:#FFFFFF;border:1px solid rgba(10,30,30,.08);border-radius:14px;overflow:hidden">
               <sc-raw-table style="width:100%;border-collapse:collapse;font-size:13px">
                 <sc-raw-thead><sc-raw-tr style="background:#FAFCFC">
-                  <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700;min-width:240px">Raw track · clinical name</sc-raw-th>
-                  <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700">Category</sc-raw-th>
+                  <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700;min-width:240px">Preset · clinical name</sc-raw-th>
                   <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700">Clinical description</sc-raw-th>
                   <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700;text-align:right">Mixes</sc-raw-th>
-                  <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700">Primary presentation</sc-raw-th>
                   <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700">Status</sc-raw-th>
                 </sc-raw-tr></sc-raw-thead>
                 <sc-raw-tbody>
@@ -1894,22 +1876,19 @@
                           <div>
                             <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#8A9B97;font-weight:600;letter-spacing:.04em;white-space:nowrap">{{ t.code }}</div>
                             <div style="font-weight:600;color:#0E1F22;margin-top:1px">{{ t.name }}</div>
-                            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:5px"><sc-for list="{{ t.tags }}" as="tg"><span style="display:inline-flex;align-items:center;font-size:10.5px;font-weight:500;color:#5C6E6B;background:#F6FAFA;border:1px solid rgba(10,30,30,.1);padding:2px 7px;border-radius:5px;white-space:nowrap;gap:4px">{{ tg }}</span></sc-for></div>
                           </div>
                         </div>
                       </sc-raw-td>
-                      <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06);white-space:nowrap"><span style="display:inline-flex;align-items:center;gap:7px;color:#0E1F22;font-size:12.5px"><span style="{{ t.dotStyle }}"></span>{{ t.catName }}</span></sc-raw-td>
                       <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06)"><div style="{{ t.snippetStyle }}">{{ t.descSnippet }}</div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#8A9B97;margin-top:4px">{{ t.wordsLabel }}</div></sc-raw-td>
                       <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06);text-align:right;font-family:'JetBrains Mono',monospace;font-weight:600;color:#0B8077">{{ t.mixes }}</sc-raw-td>
-                      <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06);color:#5C6E6B;font-size:12.5px">{{ t.presentation }}</sc-raw-td>
                       <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06)"><span style="{{ t.statusStyle }}">{{ t.statusLabel }}</span></sc-raw-td>
                     </sc-raw-tr>
                   </sc-for>
                 </sc-raw-tbody>
               </sc-raw-table>
-              <sc-if value="{{ noTracks }}"><div style="padding:40px;text-align:center;font-size:13px;color:#8A9B97">No raw tracks match these filters. <span onClick="{{ clearFilters }}" style="color:#0B8077;font-weight:600;cursor:pointer">Clear filters</span></div></sc-if>
+              <sc-if value="{{ noTracks }}"><div style="padding:40px;text-align:center;font-size:13px;color:#8A9B97">No presets match this search. <span onClick="{{ clearFilters }}" style="color:#0B8077;font-weight:600;cursor:pointer">Clear search</span></div></sc-if>
               <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;font-size:12px;color:#5C6E6B;border-top:1px solid rgba(10,30,30,.06)">
-                <span>Showing {{ tracksCount }} of {{ stat.raw }} raw tracks · click a row to see its mixes and clinical description</span>
+                <span>Showing {{ tracksCount }} of {{ stat.raw }} presets · click a row to see its mixes and clinical description</span>
                 <div style="display:flex;gap:8px"><button style="background:#FFFFFF;border:1px solid rgba(10,30,30,.14);padding:6px 12px;border-radius:8px;font-size:12px;color:#B5C0BE;cursor:not-allowed">‹ Prev</button><button onClick="{{ pageToast }}" style="background:#FFFFFF;border:1px solid rgba(10,30,30,.14);padding:6px 12px;border-radius:8px;font-size:12px;color:#0E1F22;cursor:pointer">Next ›</button></div>
               </div>
             </div>
@@ -1923,8 +1902,7 @@
                   <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700;width:48px"></sc-raw-th>
                   <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700">Mixed track</sc-raw-th>
                   <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700">Player description</sc-raw-th>
-                  <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700">Linked raw track</sc-raw-th>
-                  <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700">Background music</sc-raw-th>
+                  <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700">Linked preset</sc-raw-th>
                   <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700;text-align:right">Used in</sc-raw-th>
                   <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700">Status</sc-raw-th>
                 </sc-raw-tr></sc-raw-thead>
@@ -1935,7 +1913,6 @@
                       <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06)"><div style="font-weight:600;color:#0E1F22">{{ v.title }}</div><div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#8A9B97;margin-top:2px">{{ v.mixLabel }} · {{ v.length }} · /sound/{{ v.slug }}</div></sc-raw-td>
                       <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06);font-size:12px;color:#5C6E6B;line-height:1.45;max-width:300px">{{ v.descShort }}</sc-raw-td>
                       <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06)"><span onClick="{{ v.openTrack }}" style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:#0B5A52;background:#F0FAF8;border:1px solid rgba(14,158,146,.22);padding:2px 8px;border-radius:999px;white-space:nowrap;cursor:pointer"><img src="{{ uiIcons.link }}" alt="" style="width:12px;height:12px;display:block">{{ v.trackCode }} · {{ v.trackName }}</span></sc-raw-td>
-                      <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06);white-space:nowrap"><span style="display:inline-flex;align-items:center;font-size:10.5px;font-weight:500;color:#5C6E6B;background:#F6FAFA;border:1px solid rgba(10,30,30,.1);padding:2px 7px;border-radius:5px;white-space:nowrap;gap:4px;font-size:11.5px;padding:3px 9px"><img src="{{ v.musicIcon }}" alt="" style="width:13px;height:13px;display:block">{{ v.music }}</span></sc-raw-td>
                       <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06);text-align:right;font-family:'JetBrains Mono',monospace;color:#5C6E6B">{{ v.usedLabel }}</sc-raw-td>
                       <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06)"><span style="{{ v.statusStyle }}">{{ v.status }}</span></sc-raw-td>
                     </sc-raw-tr>
@@ -1949,12 +1926,11 @@
         </div>
       </sc-if>
 
-      <!-- ════════════ SCREEN 6B — RAW TRACK DETAIL (NEW) ════════════ -->
+      <!-- ════════════ SCREEN 6B — PRESET DETAIL ════════════ -->
       <sc-if value="{{ showTrackDetail }}">
         <div>
           <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#5C6E6B;margin-bottom:14px">
             <span onClick="{{ closeTrack }}" style="cursor:pointer;color:#0B8077;font-weight:500" style-hover="text-decoration:underline">‹ Sound Library</span>
-            <span style="color:#8A9B97">/</span><span>{{ track.catName }}</span>
             <span style="color:#8A9B97">/</span><span style="color:#0E1F22;font-weight:500">{{ track.name }}</span>
           </div>
 
@@ -1962,11 +1938,9 @@
             <div style="display:flex;align-items:center;gap:18px">
               <div style="{{ track.bigIconStyle }}"><img src="{{ track.catIcon }}" alt="" style="width:31px;height:31px;display:block"></div>
               <div>
-                <div style="display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#0B8077;font-weight:700"><span style="width:24px;height:1px;background:#0E9E92"></span>Raw track · {{ track.code }} · clinical reference</div>
+                <div style="display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#0B8077;font-weight:700"><span style="width:24px;height:1px;background:#0E9E92"></span>Preset · {{ track.code }} · clinical reference</div>
                 <h1 style="font-family:'Fraunces',serif;font-size:36px;font-weight:600;letter-spacing:-.02em;margin:6px 0 6px;line-height:1.05;color:#0E1F22">{{ track.name }}</h1>
                 <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12.5px;color:#5C6E6B">
-                  <span style="display:inline-flex;align-items:center;gap:6px"><span style="{{ track.dotStyle }}"></span>{{ track.catName }}</span><span style="color:#8A9B97">·</span>
-                  <span>{{ track.presentation }}</span><span style="color:#8A9B97">·</span>
                   <span style="font-size:11.5px;color:#8A9B97">No audio — mixes carry the audio</span>
                   <span style="{{ track.statusStyle }}">{{ track.statusLabel }}</span>
                 </div>
@@ -2006,7 +1980,6 @@
                       <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700;width:64px"></sc-raw-th>
                       <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700;width:22%">Title (unique)</sc-raw-th>
                       <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700">Player description</sc-raw-th>
-                      <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700;width:15%">Background music</sc-raw-th>
                       <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700;width:10%">Status</sc-raw-th>
                       <sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700;width:72px"></sc-raw-th>
                     </sc-raw-tr></sc-raw-thead>
@@ -2017,7 +1990,6 @@
                           <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06)"><div onClick="{{ v.play }}" style="{{ v.playStyle }}"><img src="{{ v.playIcon }}" alt="" style="width:14px;height:14px;display:block"></div></sc-raw-td>
                           <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06)"><div style="font-weight:600;color:#0E1F22">{{ v.title }}</div><div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#8A9B97;margin-top:2px">{{ v.file }} · {{ v.length }}</div><div style="font-size:10.5px;color:#8A9B97;margin-top:2px">{{ v.usedLabel }}</div></sc-raw-td>
                           <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06);font-size:12.5px;color:#0E1F22;line-height:1.5">{{ v.desc }}</sc-raw-td>
-                          <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06)"><span style="display:inline-flex;align-items:center;font-size:10.5px;font-weight:500;color:#5C6E6B;background:#F6FAFA;border:1px solid rgba(10,30,30,.1);padding:2px 7px;border-radius:5px;white-space:nowrap;gap:4px;font-size:11.5px;padding:3px 9px"><img src="{{ v.musicIcon }}" alt="" style="width:13px;height:13px;display:block">{{ v.music }}</span></sc-raw-td>
                           <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06)"><span style="{{ v.statusStyle }}">{{ v.status }}</span></sc-raw-td>
                           <sc-raw-td style="padding:14px 18px;border-top:1px solid rgba(10,30,30,.06);text-align:right"><button onClick="{{ v.edit }}" style="background:#F6FAFA;border:1px solid rgba(10,30,30,.1);border-radius:7px;color:#0B8077;cursor:pointer;padding:5px 10px;font-size:11.5px;font-weight:600">Edit</button></sc-raw-td>
                         </sc-raw-tr>
@@ -2026,7 +1998,7 @@
                   </sc-raw-table>
                 </sc-if>
                 <sc-if value="{{ noMixes }}">
-                  <div style="padding:36px;text-align:center"><div><img src="{{ uiIcons.music }}" alt="" style="width:26px;height:26px;display:block;margin:0 auto"></div><div style="font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:#0E1F22;margin-top:6px">No mixed tracks yet</div><div style="font-size:13px;color:#5C6E6B;margin-top:4px">Upload the first mix — it becomes Mix 1 of this raw track.</div></div>
+                  <div style="padding:36px;text-align:center"><div><img src="{{ uiIcons.music }}" alt="" style="width:26px;height:26px;display:block;margin:0 auto"></div><div style="font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:#0E1F22;margin-top:6px">No mixed tracks yet</div><div style="font-size:13px;color:#5C6E6B;margin-top:4px">Upload the first mix — it becomes Mix 1 of this preset.</div></div>
                 </sc-if>
               </div>
               <button onClick="{{ addMixHere }}" style="margin-top:14px;width:100%;background:#FFFFFF;border:1.5px dashed rgba(14,158,146,.4);color:#0B5A52;padding:14px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer" style-hover="background:#F0FAF8">⇪ Upload another mix for {{ track.name }}</button>
@@ -2093,27 +2065,16 @@
             </div>
           </sc-if>
 
-          <!-- TAB: DETAILS & TAGS -->
+          <!-- TAB: PRESET DETAILS -->
           <sc-if value="{{ tabOverview }}">
             <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:18px">
               <div style="background:#FFFFFF;border:1px solid rgba(10,30,30,.08);border-radius:14px;padding:24px">
-                <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:#0E1F22;margin-bottom:16px">Classification</div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-                  <div><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Category *</label><sc-raw-select onChange="{{ setTrackCat }}" defaultValue="{{ track.catName }}" style="width:100%;background:#FAFCFC;border:1px solid rgba(10,30,30,.12);color:#0E1F22;padding:11px 14px;border-radius:10px;font-size:14px;outline:none;cursor:pointer"><sc-for list="{{ cats }}" as="c"><option>{{ c.name }}</option></sc-for></sc-raw-select></div>
-                  <div><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Track code</label><div style="width:100%;background:#FAFCFC;border:1px solid rgba(10,30,30,.12);color:#0E1F22;padding:11px 14px;border-radius:10px;font-size:14px;outline:none;font-family:'JetBrains Mono',monospace;background:#F6FAFA;color:#0B5A52;font-weight:600">{{ track.code }}</div></div>
-                  <div style="grid-column:1 / -1"><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Primary presentation</label><sc-raw-select onChange="{{ setTrackPres }}" defaultValue="{{ track.presentation }}" style="width:100%;background:#FAFCFC;border:1px solid rgba(10,30,30,.12);color:#0E1F22;padding:11px 14px;border-radius:10px;font-size:14px;outline:none;cursor:pointer"><option>Not set</option><sc-for list="{{ presentations }}" as="p"><option>{{ p.name }}</option></sc-for></sc-raw-select></div>
-                </div>
-                <div style="margin-top:14px">
-                  <label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Tags</label>
-                  <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;background:#FAFCFC;border:1px solid rgba(10,30,30,.12);padding:8px 10px;border-radius:10px">
-                    <sc-for list="{{ trackTagsX }}" as="tg"><span style="display:inline-flex;align-items:center;font-size:11px;font-weight:600;color:#0B5A52;background:#F0FAF8;border:1px solid rgba(14,158,146,.22);padding:2px 8px;border-radius:999px;white-space:nowrap">{{ tg.name }} <span onClick="{{ tg.remove }}" style="margin-left:6px;color:#8A9B97;cursor:pointer">×</span></span></sc-for>
-                    <input type="text" onKeyDown="{{ addTagKey }}" placeholder="Add tag + Enter…" style="border:none;background:transparent;outline:none;font-size:13px;flex:1;min-width:100px;padding:4px">
-                  </div>
-                </div>
+                <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:#0E1F22;margin-bottom:16px">Preset details</div>
+                <div><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Preset code</label><div style="width:100%;background:#FAFCFC;border:1px solid rgba(10,30,30,.12);color:#0B5A52;padding:11px 14px;border-radius:10px;font-size:14px;font-family:'JetBrains Mono',monospace;font-weight:600">{{ track.code }}</div></div>
               </div>
               <div style="background:#FFFFFF;border:1px solid rgba(10,30,30,.08);border-radius:14px;padding:24px">
                 <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:#0E1F22;margin-bottom:4px">Clinical parameters <span style="font-family:Inter,sans-serif;font-size:11.5px;color:#8A9B97;font-weight:500">· optional</span></div>
-                <div style="font-size:12px;color:#5C6E6B;margin-bottom:14px">Reference values from the ILP doc. No audio is stored on the raw track.</div>
+                <div style="font-size:12px;color:#5C6E6B;margin-bottom:14px">Reference values from the ILP doc. No audio is stored on the preset.</div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
                   <div style="grid-column:1 / -1"><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Frequency progression</label><input type="text" defaultValue="{{ track.freq }}" style="width:100%;background:#FAFCFC;border:1px solid rgba(10,30,30,.12);color:#0E1F22;padding:11px 14px;border-radius:10px;font-size:14px;outline:none;font-family:'JetBrains Mono',monospace;font-size:13px"></div>
                   <div><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Arousal direction</label><input type="text" defaultValue="{{ track.arousal }}" style="width:100%;background:#FAFCFC;border:1px solid rgba(10,30,30,.12);color:#0E1F22;padding:11px 14px;border-radius:10px;font-size:14px;outline:none;font-size:13px"></div>
@@ -2274,7 +2235,7 @@
       </sc-if>
 
       <!-- ════════════ SCREEN 7 — BACKGROUND MUSIC (NEW) ════════════ -->
-      <sc-if value="{{ showMusic }}">
+      <sc-if value="{{ false }}">
         <div>
           <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:24px">
             <div>
@@ -2318,7 +2279,7 @@
       </sc-if>
 
       <!-- ════════════ SCREEN 8 — CATEGORIES & TAGS (NEW) ════════════ -->
-      <sc-if value="{{ showTax }}">
+      <sc-if value="{{ false }}">
         <div>
           <div style="margin-bottom:24px">
             <div style="display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#0B8077;font-weight:700"><span style="width:24px;height:1px;background:#0E9E92"></span>Categories &amp; Tags</div>
@@ -2327,7 +2288,7 @@
           </div>
           <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:18px">
             <div style="background:#FFFFFF;border:1px solid rgba(10,30,30,.08);border-radius:14px;overflow:hidden">
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid rgba(10,30,30,.06)"><div><div style="font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:#0E1F22">Categories</div><div style="font-size:12.5px;color:#5C6E6B;margin-top:2px">{{ libNav.2.count }} categories · {{ stat.raw }} raw tracks · use ▲▼ to reorder</div></div><button style="background:#FFFFFF;border:1px solid rgba(14,158,146,.4);color:#0B5A52;padding:7px 12px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer" onClick="{{ openCategoryNew }}">＋ Category</button></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid rgba(10,30,30,.06)"><div><div style="font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:#0E1F22">Categories</div><div style="font-size:12.5px;color:#5C6E6B;margin-top:2px">Hidden legacy classification screen</div></div><button style="background:#FFFFFF;border:1px solid rgba(14,158,146,.4);color:#0B5A52;padding:7px 12px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer" onClick="{{ openCategoryNew }}">＋ Category</button></div>
               <sc-raw-table style="width:100%;border-collapse:collapse;font-size:13px">
                 <sc-raw-thead><sc-raw-tr style="background:#FAFCFC"><sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700;padding:10px 18px">Category</sc-raw-th><sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700;padding:10px 18px">Linked Drive doc</sc-raw-th><sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700;padding:10px 18px;text-align:right">Tracks</sc-raw-th><sc-raw-th style="text-align:left;padding:12px 18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8A9B97;font-weight:700;padding:10px 18px"></sc-raw-th></sc-raw-tr></sc-raw-thead>
                 <sc-raw-tbody>
@@ -2361,19 +2322,15 @@
 
   <!-- ════════════════ LIBRARY MODALS (NEW · demo interactions) ════════════════ -->
 
-  <!-- Add raw track (clinical reference — no audio) -->
+  <!-- Add preset (clinical reference — no audio) -->
   <sc-if value="{{ mTrack }}">
     <div onClick="{{ closeModal }}" style="position:fixed;inset:0;background:rgba(10,30,30,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:200;padding:50px 20px;overflow-y:auto;display:flex;justify-content:center;align-items:flex-start">
       <div onClick="{{ closeTrackMenus }}" style="background:#FFFFFF;border:1px solid rgba(10,30,30,.1);border-radius:18px;width:100%;padding:30px 32px;position:relative;box-shadow:0 30px 80px rgba(10,30,30,.18);max-width:720px">
         <button onClick="{{ closeModal }}" style="position:absolute;top:18px;right:18px;background:#F6FAFA;border:1px solid rgba(10,30,30,.1);width:36px;height:36px;border-radius:10px;display:grid;place-items:center;cursor:pointer;color:#5C6E6B;font-size:20px;line-height:1">×</button>
-        <div style="display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#0B8077;font-weight:700"><span style="width:24px;height:1px;background:#0E9E92"></span>New raw track</div>
-        <h2 style="font-family:'Fraunces',serif;font-size:26px;font-weight:600;margin:8px 0 4px;color:#0E1F22;letter-spacing:-.01em">Add a <em style="font-style:italic;color:#0E9E92;font-weight:500">raw track</em>.</h2>
+        <div style="display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#0B8077;font-weight:700"><span style="width:24px;height:1px;background:#0E9E92"></span>New preset</div>
+        <h2 style="font-family:'Fraunces',serif;font-size:26px;font-weight:600;margin:8px 0 4px;color:#0E1F22;letter-spacing:-.01em">Add a <em style="font-style:italic;color:#0E9E92;font-weight:500">preset</em>.</h2>
         <div style="font-size:13px;color:#5C6E6B;margin-bottom:16px">A clinical reference: a clinical name and a long clinical description. <strong style="color:#0E1F22">No audio is uploaded here</strong> — you'll link mixed tracks to it next.</div>
 
-        <label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Category *</label>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:16px">
-          <sc-for list="{{ catOpts }}" as="c"><div onClick="{{ c.pick }}" style="{{ c.style }}"><img src="{{ c.icon }}" alt="" style="width:16px;height:16px;display:block;flex-shrink:0"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.name }}</span></div></sc-for>
-        </div>
         <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:12px;margin-bottom:14px">
           <div data-clinical-name-shell="true" onClick="{{ stopProp }}" style="position:relative;z-index:4">
             <label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Clinical name *</label>
@@ -2386,7 +2343,7 @@
                 <div style="padding:7px 9px 5px;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:#8A9B97;font-weight:700">Clinical names</div>
                 <sc-for list="{{ clinicalNameOptions }}" as="n">
                   <div onClick="{{ n.pick }}" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 10px;border-radius:8px;cursor:pointer" style-hover="background:#F0FAF8">
-                    <div style="min-width:0"><div style="font-size:12.5px;font-weight:600;color:#0E1F22;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ n.name }}</div><div style="font-size:10.5px;color:#8A9B97;margin-top:1px">{{ n.category }}</div></div>
+                    <div style="min-width:0"><div style="font-size:12.5px;font-weight:600;color:#0E1F22;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ n.name }}</div></div>
                     <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#8A9B97;white-space:nowrap">{{ n.code }}</span>
                   </div>
                 </sc-for>
@@ -2395,7 +2352,7 @@
               </div>
             </sc-if>
           </div>
-          <div><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Track code</label><div style="width:100%;background:#FAFCFC;border:1px solid rgba(10,30,30,.12);color:#0E1F22;padding:11px 14px;border-radius:10px;font-size:14px;outline:none;font-family:'JetBrains Mono',monospace;background:#F6FAFA;color:#0B5A52;font-weight:600">{{ nextCodePreview }}</div><div style="font-size:10.5px;color:#8A9B97;margin-top:4px">Auto-generated from category</div></div>
+          <div><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Preset code</label><div style="width:100%;background:#FAFCFC;border:1px solid rgba(10,30,30,.12);color:#0E1F22;padding:11px 14px;border-radius:10px;font-size:14px;outline:none;font-family:'JetBrains Mono',monospace;background:#F6FAFA;color:#0B5A52;font-weight:600">{{ nextCodePreview }}</div><div style="font-size:10.5px;color:#8A9B97;margin-top:4px">Auto-generated</div></div>
         </div>
 
         <div style="display:flex;justify-content:space-between;align-items:baseline"><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Clinical description * <span style="text-transform:none;letter-spacing:0;color:#0B8077;font-weight:600;margin-left:6px">· read by the AI, never shown to listeners</span></label><span style="{{ formWordsStyle }}">{{ formWords }} words</span></div>
@@ -2431,31 +2388,12 @@
             <div id="new-track-clinical-editor" contenteditable="true" role="textbox" aria-multiline="true" spellcheck="true" onInput="{{ clinicalEditorInput }}" onBlur="{{ clinicalEditorInput }}" style="display:block;width:100%;background:#FFFFFF;border:0;color:#0E1F22;padding:13px 14px;outline:none;min-height:210px;font-size:13px;line-height:1.65;font-family:Inter,sans-serif;overflow-y:auto;max-height:360px"></div>
           </div>
         </div>
-        <div style="font-size:11px;color:#8A9B97;margin-bottom:14px">Paste the track's full section from the ILP doc, or use <strong>Import from Drive</strong> later to fill it.</div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-          <div><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Primary presentation</label><sc-raw-select onChange="{{ fx.presentation }}" style="width:100%;background:#FAFCFC;border:1px solid rgba(10,30,30,.12);color:#0E1F22;padding:11px 14px;border-radius:10px;font-size:14px;outline:none;cursor:pointer;font-size:13px"><option>Not set</option><sc-for list="{{ presentations }}" as="p"><option>{{ p.name }}</option></sc-for></sc-raw-select></div>
-          <div onClick="{{ stopProp }}" style="position:relative;z-index:3">
-            <label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Tags</label>
-            <div onClick="{{ openTagMenu }}" style="min-height:42px;width:100%;background:#FAFCFC;border:1px solid rgba(10,30,30,.12);border-radius:10px;padding:5px 36px 5px 7px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;position:relative;cursor:text">
-              <sc-for list="{{ selectedFormTags }}" as="t"><span style="display:inline-flex;align-items:center;gap:4px;background:#E5F5F3;color:#0B5A52;border:1px solid rgba(14,158,146,.2);border-radius:6px;padding:3px 3px 3px 7px;font-size:10.5px;font-weight:600">{{ t.name }}<button type="button" onClick="{{ t.remove }}" title="Remove tag" style="width:20px;height:20px;border:0;border-radius:5px;background:transparent;color:#5C6E6B;font-size:14px;line-height:1;cursor:pointer;display:grid;place-items:center">×</button></span></sc-for>
-              <input type="text" value="{{ form.tagSearch }}" onInput="{{ setTagSearch }}" onFocus="{{ openTagMenu }}" onKeyDown="{{ tagSearchKey }}" placeholder="Search tags…" autocomplete="off" style="flex:1;min-width:92px;border:0;background:transparent;outline:none;color:#0E1F22;font-size:12.5px;padding:4px 2px">
-              <button type="button" onClick="{{ toggleTagMenu }}" style="position:absolute;right:5px;top:5px;width:30px;height:30px;border:0;background:transparent;color:#5C6E6B;cursor:pointer;font-size:15px;display:grid;place-items:center"><img src="{{ uiIcons.search }}" alt="" style="width:15px;height:15px;display:block"></button>
-            </div>
-            <sc-if value="{{ tagMenuOpen }}">
-              <div style="position:absolute;left:0;right:0;bottom:46px;background:#FFFFFF;border:1px solid rgba(10,30,30,.12);border-radius:11px;box-shadow:0 -14px 34px rgba(10,30,30,.15);padding:6px;max-height:210px;overflow-y:auto;z-index:20">
-                <div style="padding:7px 9px 5px;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:#8A9B97;font-weight:700">Available tags</div>
-                <sc-for list="{{ formTagOptions }}" as="t"><div onClick="{{ t.pick }}" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 10px;border-radius:8px;cursor:pointer" style-hover="background:#F0FAF8"><span style="font-size:12.5px;font-weight:600;color:#0E1F22">{{ t.name }}</span><span style="font-size:10px;color:#8A9B97">{{ t.group }}</span></div></sc-for>
-                <sc-if value="{{ noFormTagOptions }}"><div style="padding:10px;font-size:12px;color:#8A9B97">No matching tags. Add new tags in Categories &amp; Tags.</div></sc-if>
-              </div>
-            </sc-if>
-          </div>
-        </div>
+        <div style="font-size:11px;color:#8A9B97;margin-bottom:14px">Paste the preset's full section from the ILP doc, or use <strong>Import from Drive</strong> later to fill it.</div>
 
         <sc-if value="{{ hasFormErr }}"><div style="margin-top:14px;background:rgba(192,74,61,.07);border:1px solid rgba(192,74,61,.25);color:#A33A2E;padding:10px 14px;border-radius:10px;font-size:12.5px;line-height:1.5">{{ formErr }}</div></sc-if>
         <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(10,30,30,.06)">
           <button onClick="{{ closeModal }}" style="background:#FFFFFF;border:1px solid rgba(10,30,30,.14);border-radius:10px;padding:10px 16px;font-size:13px;color:#0E1F22;cursor:pointer;font-weight:500">Cancel</button>
-          <button onClick="{{ saveTrack }}" style="background:#0E9E92;border:1px solid #0E9E92;border-radius:10px;padding:10px 18px;font-size:13px;color:#FFFFFF;cursor:pointer;font-weight:600;box-shadow:0 1px 2px rgba(14,158,146,.4)">Create raw track</button>
+          <button onClick="{{ saveTrack }}" style="background:#0E9E92;border:1px solid #0E9E92;border-radius:10px;padding:10px 18px;font-size:13px;color:#FFFFFF;cursor:pointer;font-weight:600;box-shadow:0 1px 2px rgba(14,158,146,.4)">Create preset</button>
         </div>
       </div>
     </div>
@@ -2470,11 +2408,11 @@
         <h2 style="font-family:'Fraunces',serif;font-size:26px;font-weight:600;margin:8px 0 4px;color:#0E1F22;letter-spacing:-.01em">Import from <em style="font-style:italic;color:#0E9E92;font-weight:500">Google Drive</em>.</h2>
         <sc-if value="{{ importStep0 }}">
           <div>
-            <div style="font-size:13px;color:#5C6E6B;margin-bottom:16px">Pick an ILP document. Each “Track Name” section is matched to a raw track by its clinical name; the section text fills the <strong>clinical description</strong> and the ILP fields.</div>
+            <div style="font-size:13px;color:#5C6E6B;margin-bottom:16px">Pick an ILP document. Each “Track Name” section is matched to a preset by its clinical name; the section text fills the <strong>clinical description</strong> and the ILP fields.</div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-height:300px;overflow-y:auto">
               <sc-for list="{{ importDocs }}" as="d"><div onClick="{{ d.pick }}" style="{{ d.style }}"><span style="width:28px;height:28px;border-radius:6px;background:#3B6FD8;color:#FFFFFF;display:grid;place-items:center;font-size:12px;flex-shrink:0">≡</span><div><div style="font-weight:600;color:#0E1F22">{{ d.name }}</div><div style="font-size:11px;color:#8A9B97">{{ d.cat }}</div></div></div></sc-for>
             </div>
-            <div style="margin-top:16px;padding:12px 14px;background:#F6FAFA;border-radius:10px;font-size:12px;color:#5C6E6B;display:flex;justify-content:space-between;align-items:center;gap:10px">Adding many raw tracks at once? Fill the CSV template and upload it.<span onClick="{{ downloadTemplate }}" style="color:#0B8077;font-weight:600;cursor:pointer;white-space:nowrap">Download CSV template</span></div>
+            <div style="margin-top:16px;padding:12px 14px;background:#F6FAFA;border-radius:10px;font-size:12px;color:#5C6E6B;display:flex;justify-content:space-between;align-items:center;gap:10px">Adding many presets at once? Fill the CSV template and upload it.<span onClick="{{ downloadTemplate }}" style="color:#0B8077;font-weight:600;cursor:pointer;white-space:nowrap">Download CSV template</span></div>
             <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(10,30,30,.06)"><button onClick="{{ closeModal }}" style="background:#FFFFFF;border:1px solid rgba(10,30,30,.14);border-radius:10px;padding:10px 16px;font-size:13px;color:#0E1F22;cursor:pointer;font-weight:500">Cancel</button><button onClick="{{ runImport }}" style="background:#0E9E92;border:1px solid #0E9E92;border-radius:10px;padding:10px 18px;font-size:13px;color:#FFFFFF;cursor:pointer;font-weight:600;box-shadow:0 1px 2px rgba(14,158,146,.4)">Scan document</button></div>
           </div>
         </sc-if>
@@ -2495,7 +2433,7 @@
               </div>
             </sc-if>
             <sc-if value="{{ importNoRows }}">
-              <div style="margin-top:14px;background:rgba(192,74,61,.07);border:1px solid rgba(192,74,61,.25);color:#A33A2E;padding:10px 14px;border-radius:10px;font-size:12.5px;line-height:1.5;margin-top:6px">No sections matching the library's raw tracks were recognised in “{{ importDocName }}”. Check that each section starts with a “Track Name” heading using the same name as the raw track.</div>
+              <div style="margin-top:14px;background:rgba(192,74,61,.07);border:1px solid rgba(192,74,61,.25);color:#A33A2E;padding:10px 14px;border-radius:10px;font-size:12.5px;line-height:1.5;margin-top:6px">No sections matching the library's presets were recognised in “{{ importDocName }}”. Check that each section starts with a “Track Name” heading using the same name as the preset.</div>
             </sc-if>
             <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(10,30,30,.06)"><button onClick="{{ closeModal }}" style="background:#FFFFFF;border:1px solid rgba(10,30,30,.14);border-radius:10px;padding:10px 16px;font-size:13px;color:#0E1F22;cursor:pointer;font-weight:500">Close</button><button onClick="{{ applyImport }}" style="background:#0E9E92;border:1px solid #0E9E92;border-radius:10px;padding:10px 18px;font-size:13px;color:#FFFFFF;cursor:pointer;font-weight:600;box-shadow:0 1px 2px rgba(14,158,146,.4)">Apply import</button></div>
           </div>
@@ -2511,7 +2449,7 @@
         <button onClick="{{ closeModal }}" style="position:absolute;top:18px;right:18px;background:#F6FAFA;border:1px solid rgba(10,30,30,.1);width:36px;height:36px;border-radius:10px;display:grid;place-items:center;cursor:pointer;color:#5C6E6B;font-size:20px;line-height:1">×</button>
         <div style="display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#0B8077;font-weight:700"><span style="width:24px;height:1px;background:#0E9E92"></span><sc-if value="{{ isNew }}"><span>New mixed track</span></sc-if><sc-if value="{{ isEdit }}"><span>Edit mixed track</span></sc-if> · {{ mixNoPreview }}</div>
         <h2 style="font-family:'Fraunces',serif;font-size:26px;font-weight:600;margin:8px 0 4px;color:#0E1F22;letter-spacing:-.01em"><sc-if value="{{ isNew }}"><span>Upload a <em style="font-style:italic;color:#0E9E92;font-weight:500">mixed track</em>.</span></sc-if><sc-if value="{{ isEdit }}"><span>{{ form.title }}</span></sc-if></h2>
-        <div style="font-size:13px;color:#5C6E6B;margin-bottom:18px">Each mix has its own audio file and player description, and is linked to exactly one raw track.</div>
+        <div style="font-size:13px;color:#5C6E6B;margin-bottom:18px">Each mix has its own audio file and player description, and is linked to exactly one preset.</div>
         <sc-if value="{{ isLiveVersion }}"><div style="background:#FFF6E6;border:1px solid rgba(200,133,30,.3);border-radius:10px;padding:10px 14px;font-size:12.5px;color:#7A5510;margin-bottom:16px">Live in {{ form.used }} campaign(s) — saving updates it everywhere it plays.</div></sc-if>
 
         <!-- 1 · audio -->
@@ -2529,24 +2467,24 @@
           <div style="border:1px solid rgba(14,158,146,.25);border-radius:10px;padding:14px 16px;background:#F6FAFA;display:flex;align-items:center;gap:12px;margin-bottom:18px"><div style="width:32px;height:32px;border-radius:50%;background:#2E9E6F;color:#FFFFFF;display:grid;place-items:center;font-size:13px">✓</div><div style="flex:1"><div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#0E1F22;font-weight:600">{{ up.name }}</div><div style="font-size:11px;color:#5C6E6B">Uploaded · length {{ vTrackLen }}</div></div><span onClick="{{ resetUpload }}" style="font-size:12px;color:#C04A3D;font-weight:600;cursor:pointer">Replace</span></div>
         </sc-if>
 
-        <!-- 2 · link to raw track -->
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="width:20px;height:20px;border-radius:50%;background:#0E9E92;color:#FFFFFF;display:inline-grid;place-items:center;font-size:10.5px;font-weight:700;font-family:'JetBrains Mono',monospace;flex-shrink:0">2</span><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600;margin:0">Linked raw track * <span style="text-transform:none;letter-spacing:0;color:#8A9B97;font-weight:500">· clinical name + description</span></label></div>
+        <!-- 2 · link to preset -->
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="width:20px;height:20px;border-radius:50%;background:#0E9E92;color:#FFFFFF;display:inline-grid;place-items:center;font-size:10.5px;font-weight:700;font-family:'JetBrains Mono',monospace;flex-shrink:0">2</span><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600;margin:0">Preset * <span style="text-transform:none;letter-spacing:0;color:#8A9B97;font-weight:500">· the mix's one and only tag; it equals the preset name</span></label></div>
         <sc-if value="{{ trackUnlocked }}">
           <sc-raw-select value="{{ form.track }}" onChange="{{ fx.track }}" style="width:100%;background:#FAFCFC;border:1px solid rgba(10,30,30,.12);color:#0E1F22;padding:11px 14px;border-radius:10px;font-size:14px;outline:none;cursor:pointer;font-size:13.5px;margin-bottom:8px">
-            <option value="">Choose the raw track this mix belongs to…</option>
+            <option value="">Choose the preset this mix belongs to…</option>
             <sc-for list="{{ linkOpts }}" as="o"><option value="{{ o.id }}">{{ o.label }}</option></sc-for>
           </sc-raw-select>
         </sc-if>
         <sc-if value="{{ hasLinked }}">
           <div style="border:1px solid rgba(14,158,146,.3);background:#F6FBFA;border-radius:12px;padding:14px 16px;margin-bottom:18px">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
-              <div style="display:flex;align-items:center;gap:10px"><img src="{{ linked.icon }}" alt="" style="width:19px;height:19px;display:block;flex-shrink:0"><div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#8A9B97;font-weight:600">{{ linked.code }} · {{ linked.cat }} · {{ linked.presentation }}</div><div style="display:flex;align-items:center;gap:5px;font-weight:600;color:#0E1F22;font-size:14px"><img src="{{ uiIcons.link }}" alt="" style="width:14px;height:14px;display:block">{{ linked.name }}</div></div></div>
+              <div style="display:flex;align-items:center;gap:10px"><img src="{{ linked.icon }}" alt="" style="width:19px;height:19px;display:block;flex-shrink:0"><div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#8A9B97;font-weight:600">{{ linked.code }} · Preset</div><div style="display:flex;align-items:center;gap:5px;font-weight:600;color:#0E1F22;font-size:14px"><img src="{{ uiIcons.link }}" alt="" style="width:14px;height:14px;display:block">{{ linked.name }}</div></div></div>
               <div style="display:flex;align-items:center;gap:10px"><span style="font-size:11px;color:#0B8077;font-weight:600;white-space:nowrap">This will be {{ mixNoPreview }} · {{ linked.mixCount }} other mixes</span><sc-if value="{{ trackLocked }}"><span onClick="{{ unlockTrack }}" style="font-size:11.5px;color:#0B8077;font-weight:600;cursor:pointer;white-space:nowrap">Change</span></sc-if></div>
             </div>
             <div style="font-size:12px;color:#5C6E6B;line-height:1.5;margin-top:8px;font-style:italic">{{ linked.snippet }}</div>
           </div>
         </sc-if>
-        <sc-if value="{{ noLinked }}"><div style="font-size:11.5px;color:#8A9B97;margin:0 0 18px">Not in the list? <span style="color:#0B8077;font-weight:600">Create the raw track first</span> (Sound Library › Add raw track).</div></sc-if>
+        <sc-if value="{{ noLinked }}"><div style="font-size:11.5px;color:#8A9B97;margin:0 0 18px">Not in the list? <span style="color:#0B8077;font-weight:600">Create the preset first</span> (Sound Library › Add preset).</div></sc-if>
 
         <!-- 3 · title + player description -->
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="width:20px;height:20px;border-radius:50%;background:#0E9E92;color:#FFFFFF;display:inline-grid;place-items:center;font-size:10.5px;font-weight:700;font-family:'JetBrains Mono',monospace;flex-shrink:0">3</span><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600;margin:0">What listeners see</label></div>
@@ -2572,16 +2510,12 @@
               <div style="height:4px;background:rgba(255,255,255,.15);border-radius:2px;margin-top:14px"><div style="width:22%;height:100%;background:#0E9E92;border-radius:2px"></div></div>
               <div style="display:flex;justify-content:center;gap:22px;align-items:center;margin-top:12px;font-size:12px;color:rgba(255,255,255,.6)"><span>-15</span><span style="width:38px;height:38px;border-radius:50%;background:#FFFFFF;color:#0E1F22;display:grid;place-items:center;font-size:12px"><img src="{{ uiIcons.play }}" alt="" style="width:17px;height:17px;display:block"></span><span>+15</span></div>
             </div>
-            <div style="font-size:11px;color:#8A9B97;margin-top:6px">The raw track's clinical description is never shown here.</div>
+            <div style="font-size:11px;color:#8A9B97;margin-top:6px">The preset's clinical description is never shown here.</div>
           </div>
         </div>
 
         <!-- 4 · details -->
         <div style="display:flex;align-items:center;gap:8px;margin:18px 0 8px"><span style="width:20px;height:20px;border-radius:50%;background:#0E9E92;color:#FFFFFF;display:inline-grid;place-items:center;font-size:10.5px;font-weight:700;font-family:'JetBrains Mono',monospace;flex-shrink:0">4</span><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600;margin:0">Details</label></div>
-        <label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Background music used in the mix <span style="text-transform:none;letter-spacing:0;color:#8A9B97;font-weight:500">· optional, for filtering</span></label>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">
-          <sc-for list="{{ musicOptions }}" as="m"><div onClick="{{ m.pick }}" style="{{ m.style }}"><img src="{{ m.icon }}" alt="" style="width:18px;height:18px;display:block"><span>{{ m.name }}</span></div></sc-for>
-        </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
           <div><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Cover image</label><div style="background:#FAFCFC;border:1px solid rgba(10,30,30,.12);padding:10px 12px;border-radius:10px;font-size:12.5px;color:#5C6E6B">Default YouMind cover · <span style="color:#0B8077;font-weight:600;cursor:pointer">Upload</span></div></div>
           <div><label style="display:block;font-size:11px;color:#5C6E6B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600">Status</label><div style="display:flex;gap:6px"><div onClick="{{ statusDraft.pick }}" style="{{ statusDraft.style }}">Draft</div><div onClick="{{ statusReady.pick }}" style="{{ statusReady.style }}">Ready</div></div></div>
@@ -2689,19 +2623,13 @@
     <div onClick="{{ closeModal }}" style="position:fixed;inset:0;background:rgba(10,30,30,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:200;padding:50px 20px;overflow-y:auto;display:flex;justify-content:center;align-items:flex-start;padding:40px 20px">
       <div onClick="{{ stopProp }}" style="background:#FFFFFF;border:1px solid rgba(10,30,30,.1);border-radius:18px;max-width:1040px;width:100%;position:relative;box-shadow:0 30px 80px rgba(10,30,30,.18);overflow:hidden">
         <div style="display:flex;justify-content:space-between;align-items:center;padding:22px 26px;border-bottom:1px solid rgba(10,30,30,.08)">
-          <div><div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:#0E1F22">{{ pickerTitle }}</div><div style="font-size:12.5px;color:#5C6E6B;margin-top:2px">Mixed tracks, grouped by their raw track's category — or match the listener's problem</div></div>
+          <div><div style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:#0E1F22">{{ pickerTitle }}</div><div style="font-size:12.5px;color:#5C6E6B;margin-top:2px">Choose a mixed track; every mix is linked to exactly one preset.</div></div>
           <button onClick="{{ closeModal }}" style="background:#F6FAFA;border:1px solid rgba(10,30,30,.1);width:36px;height:36px;border-radius:10px;display:grid;place-items:center;cursor:pointer;color:#5C6E6B;font-size:20px;line-height:1">×</button>
         </div>
-        <div style="display:grid;grid-template-columns:220px 1fr">
-          <div style="border-right:1px solid rgba(10,30,30,.08);padding:16px 12px;background:#FAFCFC">
-            <div onClick="{{ pickerAll }}" style="{{ pickerAllStyle }}">All categories</div>
-            <sc-for list="{{ pickerCats }}" as="c"><div onClick="{{ c.pick }}" style="{{ c.style }}"><img src="{{ c.icon }}" alt="" style="width:15px;height:15px;display:block;flex-shrink:0"><span style="flex:1">{{ c.name }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#8A9B97">{{ c.count }}</span></div></sc-for>
-          </div>
+        <div>
           <div style="padding:18px 22px">
             <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
-              <input type="text" onInput="{{ setPickerQ }}" placeholder="Search mix title, raw track, description…" style="flex:1;min-width:220px;background:#FAFCFC;border:1px solid rgba(10,30,30,.12);padding:10px 12px;border-radius:10px;font-size:13px;outline:none">
-              <sc-raw-select onChange="{{ setPickerPres }}" style="background:#FAFCFC;border:1px solid rgba(10,30,30,.12);padding:10px 12px;border-radius:10px;font-size:13px;font-weight:500;outline:none"><option>Match a problem…</option><sc-for list="{{ presentations }}" as="p"><option>{{ p.name }}</option></sc-for></sc-raw-select>
-              <sc-raw-select onChange="{{ setPickerMus }}" style="background:#FAFCFC;border:1px solid rgba(10,30,30,.12);padding:10px 12px;border-radius:10px;font-size:13px;font-weight:500;outline:none"><option>Any music</option><sc-for list="{{ music }}" as="m"><option>{{ m.name }}</option></sc-for></sc-raw-select>
+              <input type="text" onInput="{{ setPickerQ }}" placeholder="Search mix title, preset, description…" style="flex:1;min-width:220px;background:#FAFCFC;border:1px solid rgba(10,30,30,.12);padding:10px 12px;border-radius:10px;font-size:13px;outline:none">
             </div>
             <div style="display:flex;flex-direction:column;gap:8px;height:440px;overflow-y:auto;padding-right:4px">
               <sc-for list="{{ pickerVersions }}" as="v">
@@ -2709,12 +2637,12 @@
                   <div style="{{ v.radioStyle }}"></div>
                   <div style="flex:1;min-width:0">
                     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span style="font-weight:600;color:#0E1F22">{{ v.title }}</span><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:#0B5A52;background:#F0FAF8;border:1px solid rgba(14,158,146,.22);padding:2px 8px;border-radius:999px;white-space:nowrap"><img src="{{ uiIcons.link }}" alt="" style="width:12px;height:12px;display:block">{{ v.trackCode }} · {{ v.clinical }}</span></div>
-                    <div style="font-size:12px;color:#0E1F22;margin-top:4px;line-height:1.45">{{ v.descShort }}</div><div style="display:flex;align-items:center;gap:4px;font-size:11px;color:#8A9B97;margin-top:3px">{{ v.mixLabel }} · <img src="{{ v.musicIcon }}" alt="" style="width:12px;height:12px;display:block">{{ v.music }} · {{ v.length }} · {{ v.presentation }}</div>
+                    <div style="font-size:12px;color:#0E1F22;margin-top:4px;line-height:1.45">{{ v.descShort }}</div><div style="display:flex;align-items:center;gap:4px;font-size:11px;color:#8A9B97;margin-top:3px">{{ v.mixLabel }} · {{ v.length }}</div>
                   </div>
                   <div onClick="{{ v.play }}" style="{{ v.playStyle }}"><img src="{{ v.playIcon }}" alt="" style="width:14px;height:14px;display:block"></div>
                 </div>
               </sc-for>
-              <sc-if value="{{ pickerEmpty }}"><div style="padding:40px;text-align:center;color:#8A9B97;font-size:13px">No versions match these filters.</div></sc-if>
+              <sc-if value="{{ pickerEmpty }}"><div style="padding:40px;text-align:center;color:#8A9B97;font-size:13px">No mixed tracks match this search.</div></sc-if>
             </div>
           </div>
         </div>
@@ -3239,24 +3167,24 @@ class Component extends DCLogic {
     return code;
   }
   downloadTemplate(){
-    const csv = 'raw_track_code,clinical_name,category,clinical_description,tags\nANX-06,Example Clinical Name,Anxiety,"Long clinical description used by the AI…",Daytime|Calming\n\nmix_title,raw_track_code,audio_file,player_description,background_music\nExample Mix,ANX-06,example-mix.mp3,"Short text shown in the player",Ocean Waves\n';
+    const csv = 'preset_code,clinical_name,clinical_description\nPRE-01,Example Clinical Name,"Long clinical description used by the AI…"\n\nmix_title,preset_code,audio_file,player_description\nExample Mix,PRE-01,example-mix.mp3,"Short text shown in the player"\n';
     try { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type:'text/csv' })); a.download = 'youmind-sound-library-template.csv'; document.body.appendChild(a); a.click(); a.remove(); } catch(e){}
     this.toast('Template downloaded · youmind-sound-library-template.csv');
   }
 
-  // ---- raw tracks (clinical references — no audio)
+  // ---- presets (clinical references — no audio)
   openTrack(id){ this.setState({ view:'library', trackDetail:true, trackId:id, trackTab:'mixes', profEditing:false, profMsg:null, descEditing:false }); try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){} }
   openAddTrack(){ const cat = this.state.libCat !== 'all' ? this.state.libCat : 'anxiety'; this._editorRange = null; this.openModal('track', { cat, presentation:'', name:'', tags:'', tagSearch:'', clinicalDesc:'', clinicalHtml:'', _nameOpen:false, _tagOpen:false }); }
   saveTrack(){
     const f = this.state.form;
     if (!f.name || !f.name.trim()) return this.setState({ formErr:'Enter the clinical name.' });
-    if (this.state.tracks.some(t => !t.archived && t.name.toLowerCase() === f.name.trim().toLowerCase())) return this.setState({ formErr:'A raw track with this clinical name already exists.' });
+    if (this.state.tracks.some(t => !t.archived && t.name.toLowerCase() === f.name.trim().toLowerCase())) return this.setState({ formErr:'A preset with this clinical name already exists.' });
     if (!f.clinicalDesc || wordCount(f.clinicalDesc) < 15) return this.setState({ formErr:'Write the clinical description (at least 15 words) — the AI uses it to decide who this track suits.' });
     const code = this.nextCode(f.cat);
     const t = { id:code, name:f.name.trim(), cat:f.cat, presentation:f.presentation || 'Not set', freq:'—', length:'30:00', band:'', arousal:'', energy:'', intensity:'Moderate', tags:splitList(f.tags), plays:'—', prof:null, clinicalDesc:f.clinicalDesc.trim(), clinicalHtml:f.clinicalHtml || '', desc:'', archived:false };
     this.setState(s => ({ tracks:[t, ...s.tracks], cats: s.cats.map(c => c.id === f.cat ? { ...c, count:c.count + 1 } : c) }));
     this.closeModal(); this.openTrack(code);
-    this.toast('Raw track ' + code + ' created · now upload its mixes');
+    this.toast('Preset ' + code + ' created · now upload its mixes');
   }
   duplicateTrack(){
     const t = this.T(this.state.trackId); const code = this.nextCode(t.cat);
@@ -3282,32 +3210,32 @@ class Component extends DCLogic {
     this.setState({ descEditing:false }); this.toast('Clinical name & description saved');
   }
 
-  // ---- mixed tracks (audio + player description, linked to one raw track)
+  // ---- mixed tracks (audio + player description, linked to exactly one preset)
   nextMixNo(trackId){ return this.state.versions.filter(v => v.track === trackId).reduce((a, v) => Math.max(a, v.mixNo || 0), 0) + 1; }
   openMix(trackId, vid, music){
     if (vid) {
       const v = this.state.versions.find(x => x.id === vid);
-      this.openModal('version', { id:v.id, track:v.track, music:v.music, title:v.title, playerDesc:v.playerDesc || '', status:v.status === 'Live' ? 'Ready' : v.status, live:v.status === 'Live', used:v.used, mixNo:v.mixNo });
+      this.openModal('version', { id:v.id, track:v.track, music:'none', title:v.title, playerDesc:v.playerDesc || '', status:v.status === 'Live' ? 'Ready' : v.status, live:v.status === 'Live', used:v.used, mixNo:v.mixNo });
       this.setState({ up:{ state:'done', pct:100, name: slugify(v.title) + '.mp3' }, trackLocked:false });
     } else {
-      this.openModal('version', { track: trackId || '', music: music || 'none', title:'', playerDesc:'', status:'Ready' });
+      this.openModal('version', { track: trackId || '', music:'none', title:'', playerDesc:'', status:'Ready' });
       this.setState({ trackLocked: !!trackId });
     }
   }
   saveMix(){
     const f = this.state.form, title = (f.title || '').trim();
-    if (!f.track) return this.setState({ formErr:'Link this mix to its raw track.' });
+    if (!f.track) return this.setState({ formErr:'Choose the one preset this mix belongs to.' });
     if (this.state.up.state !== 'done') return this.setState({ formErr:'Upload the mixed audio file.' });
     if (!title) return this.setState({ formErr:'Give the mix a unique title.' });
     if (this.state.versions.some(v => v.id !== f.id && v.title.toLowerCase() === title.toLowerCase())) return this.setState({ formErr:'“' + title + '” is already used by another mix.' });
     if (!f.playerDesc || !f.playerDesc.trim()) return this.setState({ formErr:'Write the player description — listeners see it in the audio player.' });
     const t = this.T(f.track);
     if (f.id) {
-      this.setState(s => ({ versions: s.versions.map(v => v.id === f.id ? { ...v, title, track:f.track, music:f.music, playerDesc:f.playerDesc.trim(), mixNo: v.track === f.track ? v.mixNo : this.nextMixNo(f.track), status: v.status === 'Live' ? 'Live' : f.status } : v) }));
+      this.setState(s => ({ versions: s.versions.map(v => v.id === f.id ? { ...v, title, track:f.track, music:'none', playerDesc:f.playerDesc.trim(), mixNo: v.track === f.track ? v.mixNo : this.nextMixNo(f.track), status: v.status === 'Live' ? 'Live' : f.status } : v) }));
       this.toast(f.live ? 'Saved · updated in ' + f.used + ' live campaign' + (f.used > 1 ? 's' : '') : 'Mixed track saved');
     } else {
       const no = this.nextMixNo(f.track);
-      this.setState(s => ({ versions:[...s.versions, { id:'v' + Date.now(), track:f.track, title, music:f.music, playerDesc:f.playerDesc.trim(), length:t.length && t.length !== '—' ? t.length : '30:00', used:0, status:f.status, mixNo:no }], music: s.music.map(m => m.id === f.music ? { ...m, versions:m.versions + 1 } : m) }));
+      this.setState(s => ({ versions:[...s.versions, { id:'v' + Date.now(), track:f.track, title, music:'none', playerDesc:f.playerDesc.trim(), length:t.length && t.length !== '—' ? t.length : '30:00', used:0, status:f.status, mixNo:no }] }));
       this.toast('Mix ' + no + ' “' + title + '” linked to ' + t.id + ' ' + t.name);
     }
     this.closeModal();
@@ -3316,7 +3244,7 @@ class Component extends DCLogic {
     const f = this.state.form;
     if (f.live) return this.setState({ formErr:'This mix is live in ' + f.used + ' campaign' + (f.used > 1 ? 's' : '') + ' — remove it there first.' });
     this.closeModal();
-    this.confirm('Delete “' + f.title + '”?', 'The audio file and its public URL are removed. The raw track is not affected.', 'Delete mix', () => { this.setState(s => ({ versions: s.versions.filter(v => v.id !== f.id) })); this.toast('Mixed track deleted'); }, true);
+    this.confirm('Delete “' + f.title + '”?', 'The audio file and its public URL are removed. The preset is not affected.', 'Delete mix', () => { this.setState(s => ({ versions: s.versions.filter(v => v.id !== f.id) })); this.toast('Mixed track deleted'); }, true);
   }
 
   // ---- clinical profile
@@ -3460,12 +3388,8 @@ class Component extends DCLogic {
     const stat = { raw: 73 + liveTracks.length, versions: 299 + st.versions.length };
     const q = (st.libSearch || '').toLowerCase().trim();
     const versionsAll = st.versions.filter(x => { const t = this.T(x.track); return t && !t.archived; }).map(x => this.decorateVersion(x));
-    const tracksShown = liveTracks.map(t => this.decorateTrack(t)).filter(t => (st.libCat === 'all' || t.cat === st.libCat) &&
-      (!st.libPres || t.presentation === st.libPres) &&
-      (!st.libMus || versionsAll.some(x => x.track === t.id && x.music === st.libMus)) &&
-      (!q || [t.name, t.code, t.presentation, t.clinicalDesc || '', ...t.tags].join(' ').toLowerCase().includes(q)));
-    const versionsShown = versionsAll.filter(x => (st.libCat === 'all' || x.cat === st.libCat) && (!st.libPres || x.presentation === st.libPres) && (!st.libMus || x.music === st.libMus) &&
-      (!q || [x.title, x.trackName, x.trackCode, x.music, x.desc].join(' ').toLowerCase().includes(q)));
+    const tracksShown = liveTracks.map(t => this.decorateTrack(t)).filter(t => !q || [t.name, t.code, t.clinicalDesc || ''].join(' ').toLowerCase().includes(q));
+    const versionsShown = versionsAll.filter(x => !q || [x.title, x.trackName, x.trackCode, x.desc].join(' ').toLowerCase().includes(q));
     const rawTrack = this.T(st.trackId) || st.tracks[0];
     const track = this.decorateTrack(rawTrack);
     const trackMixes = versionsAll.filter(x => x.track === track.id).sort((a, b) => a.mixNo - b.mixNo);
@@ -3477,8 +3401,7 @@ class Component extends DCLogic {
     const prof = p ? { ...p, alts: (p.alts || []).map(a => { const t = this.T(a[0]); return { code:a[0], name: t ? t.name : a[0], why:a[1], open: () => t && this.openTrack(t.id) }; }) } : null;
     const sideItem = (active) => 'display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;font-size:12.5px;cursor:pointer;margin-bottom:2px;' + (active ? 'background:#FFFFFF;color:#0B5A52;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.05)' : 'color:#5C6E6B;font-weight:500');
     const pq = (st.pickerQ || '').toLowerCase().trim();
-    const pickerVersions = versionsAll.filter(x => (st.pickerCat === 'all' || x.cat === st.pickerCat) && (!st.pickerPres || x.presentation === st.pickerPres) && (!st.pickerMus || x.musicId === st.pickerMus) &&
-      (!pq || [x.title, x.trackName, x.trackCode, x.music, x.desc].join(' ').toLowerCase().includes(pq)))
+    const pickerVersions = versionsAll.filter(x => !pq || [x.title, x.trackName, x.trackCode, x.desc].join(' ').toLowerCase().includes(pq))
       .map(x => ({ ...x, pick: () => this.setState({ pickerTemp: x.id, formErr:'' }),
         rowStyle: 'display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:10px;cursor:pointer;' + (x.id === st.pickerTemp ? 'background:#F0FAF8;border:1px solid rgba(14,158,146,.45)' : 'background:#FFFFFF;border:1px solid rgba(10,30,30,.08)'),
         radioStyle: 'width:16px;height:16px;border-radius:50%;flex-shrink:0;' + (x.id === st.pickerTemp ? 'border:5px solid #0E9E92' : 'border:1.5px solid rgba(10,30,30,.25)') }));
@@ -3526,7 +3449,7 @@ class Component extends DCLogic {
     const cb = st.confirmBox;
     return {
       uiIcons: UI_SVG,
-      libNav: [navItem('library', UI_SVG.library, 'Sound Library', stat.raw), navItem('music', UI_SVG.music, 'Background Music', st.music.length), navItem('taxonomy', UI_SVG.tags, 'Categories & Tags', st.cats.length)],
+      libNav: [navItem('library', UI_SVG.library, 'Sound Library', stat.raw)],
       stat,
       showLibrary: v === 'library' && !st.trackDetail, showTrackDetail: v === 'library' && st.trackDetail, showMusic: v === 'music', showTax: v === 'taxonomy',
       goLibrary: () => this.setView('library'),
@@ -3591,7 +3514,7 @@ class Component extends DCLogic {
       intensityOpts: ['Low','Moderate','High'].map(k => ({ label:k, style: rawTrack.intensity === k ? S_OPT_ON : S_OPT_OFF, pick: () => this.patchTrack(rawTrack.id, () => ({ intensity:k })) })),
       setTrackCat: (e) => { const c = st.cats.find(x => x.name === e.target.value); if (c) this.patchTrack(rawTrack.id, () => ({ cat:c.id })); },
       setTrackPres: (e) => this.patchTrack(rawTrack.id, () => ({ presentation: e.target.value })),
-      trackTabs: [tab('mixes', 'Mixed tracks (' + track.mixes + ')'), tab('desc', 'Clinical description'), tab('overview', 'Details & tags'), tab('profile', 'ILP structured fields'), tab('usage', 'Usage')],
+      trackTabs: [tab('mixes', 'Mixed tracks (' + track.mixes + ')'), tab('desc', 'Clinical description'), tab('overview', 'Preset details'), tab('profile', 'ILP structured fields'), tab('usage', 'Usage')],
       tabMixes: st.trackTab === 'mixes', tabDesc: st.trackTab === 'desc', tabOverview: st.trackTab === 'overview', tabProfile: st.trackTab === 'profile', tabUsage: st.trackTab === 'usage',
       prof, hasProfile: !!prof && !st.profEditing, noProfile: !prof && !st.profEditing && !st.profBusy, profForm: !!st.profEditing,
       profImporting: st.profBusy === 'import', profResyncing: st.profBusy === 'resync', resyncLabel: st.profBusy === 'resync' ? '↻ Syncing…' : '↻ Re-sync from Drive',
@@ -3618,16 +3541,16 @@ class Component extends DCLogic {
       newGroupStyle: f.group === '__new' ? S_OPT_ON : S_OPT_OFF, pickNewGroup: () => this.setF('group', '__new'), isNewGroup: f.group === '__new',
       // version modal
       trackLocked: !!st.trackLocked, trackUnlocked: !st.trackLocked, unlockTrack: () => this.setState({ trackLocked:false }),
-      linkOpts: liveTracks.map(t => ({ id:t.id, label: t.id + ' · ' + t.name + ' (' + this.catOf(t.cat).name + ')' })),
+      linkOpts: liveTracks.map(t => ({ id:t.id, label: t.id + ' · ' + t.name })),
       linked: (() => { const t = this.T(f.track); if (!t) return null; const c = this.catOf(t.cat), cd = t.clinicalDesc || ''; return { code:t.id, name:t.name, cat:c.name, icon:c.icon, presentation:t.presentation, mixCount: st.versions.filter(v => v.track === t.id && v.id !== f.id).length, snippet: cd ? (cd.length > 220 ? cd.slice(0, 218) + '…' : cd) : 'No clinical description yet.' }; })(),
       hasLinked: !!this.T(f.track), noLinked: !this.T(f.track),
       mixNoPreview: f.id ? 'Mix ' + (f.mixNo || 1) : (this.T(f.track) ? 'Mix ' + this.nextMixNo(f.track) : 'Mix —'),
       vTrackLen: this.T(f.track) ? (this.T(f.track).length || '30:00') : '30:00',
       previewTitle: (f.title && String(f.title).trim()) || 'Mix title', previewDesc: (f.playerDesc && String(f.playerDesc).trim()) || 'Your player description appears here — a short, friendly line telling the listener what to expect.',
-      previewSub: (this.T(f.track) ? this.T(f.track).name : 'Raw track') + ' · ' + (mVer ? mVer.name : ''),
+      previewSub: this.T(f.track) ? this.T(f.track).name : 'Preset',
       musicOptions: st.music.map(m => ({ ...m, pick: () => this.setF('music', m.id),
         style: 'display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;cursor:pointer;font-size:12.5px;font-weight:600;' + (f.music === m.id ? 'background:#F0FAF8;border:1.5px solid #0E9E92;color:#0B5A52' : 'background:#FFFFFF;border:1px solid rgba(10,30,30,.12);color:#0E1F22') })),
-      modalSuggest: (this.T(f.track) ? this.T(f.track).name : '') + ' · ' + (mVer ? mVer.short : ''), useSuggest: () => this.setF('title', (this.T(f.track) ? this.T(f.track).name : 'Mix') + ' · ' + (mVer ? mVer.short : '')),
+      modalSuggest: (this.T(f.track) ? this.T(f.track).name : '') + ' · Mix ' + (this.T(f.track) ? this.nextMixNo(f.track) : '—'), useSuggest: () => this.setF('title', (this.T(f.track) ? this.T(f.track).name : 'Mix') + ' · Mix ' + (this.T(f.track) ? this.nextMixNo(f.track) : '')),
       titleClash, titleOk: !!(f.title && String(f.title).trim() && !titleClash),
       statusDraft: opt('status', 'Draft'), statusReady: opt('status', 'Ready'), isLiveVersion: !!f.live,
       vSlug: 'youmind.org/sound/' + (slugify(f.title) || '…'),
